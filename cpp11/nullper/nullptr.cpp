@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+
 using namespace std;
 
 
@@ -48,6 +50,18 @@ int main(){
 
     int a {};
     int* b{};
-    
+
+    int x1(5.3);
+    int x2 = 5.3;
+    int x3{5.0};
+    int x4 = {5.3};
+
+    std:: cout<<"x1 = "<<x1<<" x2 = "<<x2<<" x3 =  "<<x3<<" x4 = "<<x4<<std::endl;
+
+    vector<int> v1{1,2,3,4.3,5.0};
+    for(auto &v : v1){
+        cout<<v<<endl;
+    }
+
     return 0;
 }
