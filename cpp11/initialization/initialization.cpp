@@ -54,6 +54,60 @@ int main(){
 }
 
 /*
+当元素在for循环中被初始化为decl，不得有任何显式类型转换（explicit type conversion）。因此下面的代码无法通过编译:
+
+class C{
+    public:
+        explicit C(const std::string& s);
+        ...
+
+};
+
+std::vector<std::string> vs; // ERROR, 在for循环初始化的表达式，不能进行显示类型转换
+for(const C& elem : vs){
+    std::cout<<elem<<std::endl;
+}
+
+
+C++中的for循环语法不支持在循环头部进行类型转换。在for循环的初始化表达式、条件表达式和迭代器表达式中，只能使用已声明的变量或已定义的对象，而不允许进行类型转换。
+
+如果需要在循环体内进行类型转换，可以使用强制类型转换（即C-style cast或static_cast、dynamic_cast等），或者使用其他方式来实现所需的类型转换操作。
+
+*/
+
+/*
+#explicit
+在C++中，explicit是一个关键字，用于声明单参数构造函数或转换函数。它的作用是禁止隐式类型转换，只允许显式调用。当使用explicit修饰构造函数时，编译器将不会自动执行隐式的构造操作。这对于避免意外的类型转换和提高代码的可读性非常有用。
+
+以下是一个使用 explicit 的示例：
+
+cpp
+class MyClass {
+public:
+    explicit MyClass(int x) : value(x) {}
+    
+private:
+    int value;
+};
+
+void func(MyClass obj) {
+    // some code here
+}
+
+int main() {
+    MyClass obj1(10);     // 直接初始化
+    MyClass obj2 = 20;   // 编译错误，禁止隐式转换
+    
+    func(obj1);          // 正常调用
+    func(30);            // 编译错误，禁止隐式转换
+
+    return 0;
+}
+在上面的示例中，由于构造函数被声明为 explicit，所以禁止了直接将整数隐式地转换为 MyClass 对象。只有通过显式调用构造函数才能创建对象。
+*/
+
+
+/*
 #constexpr
 在C++中，constexpr是用于声明一个常量表达式的关键字。常量表达式是在编译时就可以计算出结果的表达式。
 
