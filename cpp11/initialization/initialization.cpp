@@ -30,28 +30,45 @@ int main(){
 */
 
 
-void prinum(std::initializer_list<int> numbers){
-    for(auto &v : numbers){
-        std::cout<<v<<std::endl;
-    }
-    const int * num = numbers.begin();
-    std::cout<<*num<<std::endl;
-    std::cout<<*(++num)<<std::endl;
-    std::cout<<numbers.size()<<std::endl;
-    const int * nn = std::begin(numbers);
-    std::cout<<*nn<<std::endl;
-    return ;
+// void prinum(std::initializer_list<int> numbers){
+//     for(auto &v : numbers){
+//         std::cout<<v<<std::endl;
+//     }
+//     const int * num = numbers.begin();
+//     std::cout<<*num<<std::endl;
+//     std::cout<<*(++num)<<std::endl;
+//     std::cout<<numbers.size()<<std::endl;
+//     const int * nn = std::begin(numbers);
+//     std::cout<<*nn<<std::endl;
+//     return ;
+// }
+
+void inster(string str){
+
+    std::cout<<str<<std::endl;
+
+    string s = std::move(str);
+    std::cout<<str<<std::endl;
 }
 
 
 int main(){
 
-    prinum({1,2,3,4});
+    // prinum({1,2,3,4});
+    inster("hhsa");
 
 
 
     return 0;
 }
+/*
+#move语义：
+用来避免非必要拷贝和产生临时对象
+
+*/
+
+
+
 
 /*
 当元素在for循环中被初始化为decl，不得有任何显式类型转换（explicit type conversion）。因此下面的代码无法通过编译:
@@ -151,79 +168,79 @@ void func() noexcept {
 在某些情况下，编译器可能会针对 noexcept 的保证进行静态分析和检查。
 需要注意的是，在一个带有 noexcept 声明的函数内部调用了可能会抛出异常的函数，并且没有进行适当的处理或者在合适的地方捕获异常时，程序将会终止运行。因此，在使用 noexcept 时需要仔细考虑异常处理策略。
 */
-namespace std
-{
-  /// initializer_list
-  //initializer_list只有一个模板参数，initializer_list接收多个参数时，所有参数必须是相同的数据类型，
-  /*
-    缺点：
-        1.不支持动态大小调整：一旦使用了initializer_list初始化一个对象，其大小将被确定，并且不能再进行动态大小调整。
-        2.只能进行简单赋值初始化：initializer_list只能用于简单地赋值初始化对象，而不能进行更复杂的构造过程。
-        3.存在潜在性能开销：当传递大量数据时，由于每个元素都需要复制到内存中，可能会引起额外的内存拷贝开销。
+// namespace std
+// {
+//   /// initializer_list
+//   //initializer_list只有一个模板参数，initializer_list接收多个参数时，所有参数必须是相同的数据类型，
+//   /*
+//     缺点：
+//         1.不支持动态大小调整：一旦使用了initializer_list初始化一个对象，其大小将被确定，并且不能再进行动态大小调整。
+//         2.只能进行简单赋值初始化：initializer_list只能用于简单地赋值初始化对象，而不能进行更复杂的构造过程。
+//         3.存在潜在性能开销：当传递大量数据时，由于每个元素都需要复制到内存中，可能会引起额外的内存拷贝开销。
     
-    initializer_list的成员函数：
-        size()：参数列表中参数个数
-        begin()：参数列表第一个参数的const _E* 指针
-        end(): 参数列表尾指针，为null
-        initializer_list的构造函数被编译器调用
-  */
-  template<class _E>
-    class initializer_list
-    {
-    public:
-      typedef _E 		value_type;
-      typedef const _E& 	reference;
-      typedef const _E& 	const_reference;
-      typedef size_t 		size_type;
-      typedef const _E* 	iterator;
-      typedef const _E* 	const_iterator;
+//     initializer_list的成员函数：
+//         size()：参数列表中参数个数
+//         begin()：参数列表第一个参数的const _E* 指针
+//         end(): 参数列表尾指针，为null
+//         initializer_list的构造函数被编译器调用
+//   */
+//   template<class _E>
+//     class initializer_list
+//     {
+//     public:
+//       typedef _E 		value_type;
+//       typedef const _E& 	reference;
+//       typedef const _E& 	const_reference;
+//       typedef size_t 		size_type;
+//       typedef const _E* 	iterator;
+//       typedef const _E* 	const_iterator;
 
-    private:
-      iterator			_M_array;
-      size_type			_M_len;
+//     private:
+//       iterator			_M_array;
+//       size_type			_M_len;
 
-      // The compiler can call a private constructor.
-      //编译器可以调用私有构造函数。
-      constexpr initializer_list(const_iterator __a, size_type __l)
-      : _M_array(__a), _M_len(__l) { }
+//       // The compiler can call a private constructor.
+//       //编译器可以调用私有构造函数。
+//       constexpr initializer_list(const_iterator __a, size_type __l)
+//       : _M_array(__a), _M_len(__l) { }
 
-    public:
-      constexpr initializer_list() noexcept
-      : _M_array(0), _M_len(0) { }
+//     public:
+//       constexpr initializer_list() noexcept
+//       : _M_array(0), _M_len(0) { }
 
-      // Number of elements.
-      constexpr size_type
-      size() const noexcept { return _M_len; }
+//       // Number of elements.
+//       constexpr size_type
+//       size() const noexcept { return _M_len; }
 
-      // First element.
-      constexpr const_iterator
-      begin() const noexcept { return _M_array; }
+//       // First element.
+//       constexpr const_iterator
+//       begin() const noexcept { return _M_array; }
 
-      // One past the last element.
-      constexpr const_iterator
-      end() const noexcept { return begin() + size(); }
-    };
+//       // One past the last element.
+//       constexpr const_iterator
+//       end() const noexcept { return begin() + size(); }
+//     };
 
-  /**
-   *  @brief  Return an iterator pointing to the first element of
-   *          the initilizer_list.
-   *  @param  __ils  Initializer list.
-   */
-  template<class _Tp>
-    constexpr const _Tp*
-    begin(initializer_list<_Tp> __ils) noexcept
-    { return __ils.begin(); }
+//   /**
+//    *  @brief  Return an iterator pointing to the first element of
+//    *          the initilizer_list.
+//    *  @param  __ils  Initializer list.
+//    */
+//   template<class _Tp>
+//     constexpr const _Tp*
+//     begin(initializer_list<_Tp> __ils) noexcept
+//     { return __ils.begin(); }
 
-  /**
-   *  @brief  Return an iterator pointing to one past the last element
-   *          of the initilizer_list.
-   *  @param  __ils  Initializer list.
-   */
-  template<class _Tp>
-    constexpr const _Tp*
-    end(initializer_list<_Tp> __ils) noexcept
-    { return __ils.end(); }
-}
+//   /**
+//    *  @brief  Return an iterator pointing to one past the last element
+//    *          of the initilizer_list.
+//    *  @param  __ils  Initializer list.
+//    */
+//   template<class _Tp>
+//     constexpr const _Tp*
+//     end(initializer_list<_Tp> __ils) noexcept
+//     { return __ils.end(); }
+// }
 
 // #pragma GCC visibility pop
 
