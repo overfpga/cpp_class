@@ -69,6 +69,7 @@
 
 tie
 ![Alt text](image-5.png)
+
 这里的std：：tie（i，f，s）会以i、f和s的reference建立起一个tuple，因此上述赋值操作其实就是将t内的元素分别赋值为Ti、f和s。
 使用tie（）时，std::ignore允许我们忽略tuple的某些元素，也就是我们可以用它来局部提取tuple的元素值：
 ![Alt text](image-6.png)
@@ -79,8 +80,10 @@ std::ignore忽视某一个元素
 
     此外，你不可以将初值列传至“期望获得一个tuple”的地方
 ![Alt text](image-8.png)
+    
     注意，上述做法对于pair＜＞和容器（除了array＜＞）是行得通的
 ![Alt text](image-9.png)
+    
     但对于tuple，你必须明确地将初值转为一个tuple（如运用make_tuple（））：
 ![Alt text](image-10.png)
 
