@@ -58,3 +58,33 @@
     make_pair
         如果make_pair里面的参数想要是是引用，那么需要使用ref和cref转成引用
 ![Alt text](image-2.png)
+
+    pair 对象之间比较，如果两个pair对象内的所有元素都相等，则zhe'lzheli'ang'iangg额对象被视为相等
+![Alt text](image-3.png)
+
+
+## tuple
+    tuple可以接受任何数量template实参
+![Alt text](image-4.png)
+
+tie
+![Alt text](image-5.png)
+这里的std：：tie（i，f，s）会以i、f和s的reference建立起一个tuple，因此上述赋值操作其实就是将t内的元素分别赋值为Ti、f和s。
+使用tie（）时，std::ignore允许我们忽略tuple的某些元素，也就是我们可以用它来局部提取tuple的元素值：
+![Alt text](image-6.png)
+std::ignore忽视某一个元素
+
+    tuple不能进行隐式转换
+![Alt text](image-7.png)
+
+    此外，你不可以将初值列传至“期望获得一个tuple”的地方
+![Alt text](image-8.png)
+    注意，上述做法对于pair＜＞和容器（除了array＜＞）是行得通的
+![Alt text](image-9.png)
+    但对于tuple，你必须明确地将初值转为一个tuple（如运用make_tuple（））：
+![Alt text](image-10.png)
+
+
+· tuple_size＜tupletype＞：：value可获得元素个数。
+· tuple_element＜idx，tupletype＞：：type可取得第idx个元素的类型（也就是get（）返回值的类型）。
+· tuple_cat（）可将多个tuple串接成一个tuple。
