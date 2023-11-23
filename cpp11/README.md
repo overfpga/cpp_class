@@ -71,7 +71,7 @@
 ![Alt text](image-5.png)
 
     这里的std：：tie（i，f，s）会以i、f和s的reference建立起一个tuple，因此上述赋值操作其实就是将t内的元素分别赋值为Ti、f和s。
-使用tie（）时，std::ignore允许我们忽略tuple的某些元素，也就是我们可以用它来局部提取tuple的元素值：
+    使用tie（）时，std::ignore允许我们忽略tuple的某些元素，也就是我们可以用它来局部提取tuple的元素值：
 ![Alt text](image-6.png)
 std::ignore忽视某一个元素
 
@@ -88,6 +88,6 @@ std::ignore忽视某一个元素
 ![Alt text](image-10.png)
 
 
-· tuple_size＜tupletype＞：：value可获得元素个数。
-· tuple_element＜idx，tupletype＞：：type可取得第idx个元素的类型（也就是get（）返回值的类型）。
-· tuple_cat（）可将多个tuple串接成一个tuple。
+    tuple_size＜tupletype＞：：value可获得元素个数。
+    tuple_element＜idx，tupletype＞：：type可取得第idx个元素的类型（也就是get（）返回值的类型）。
+    tuple_cat（）可将多个tuple串接成一个tuple。
