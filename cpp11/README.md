@@ -105,7 +105,37 @@ std::ignore忽视某一个元素
 
 
 ## smart_poiter
+    共享式智能指针，多个shared_ptr可以指向同一个对象，该对象和资源会在最后一个shared_ptr被销毁时被释放
+    shared_ptr的构造函数是explicit，禁止隐式类型转换
 
+### shared_ptr
+    共享式智能指针，多个shared_ptr可以指向同一个对象，该对象和资源会在最后一个shared_ptr被销毁时被释放
+    shared_ptr的构造函数是explicit，禁止隐式类型转换,被赋值会报错，可以用reset
+![Alt text](image-13.png)
+
+    make_shared：创建智能指针对象
+
+    shared_ptr指向array（数组）对象是错误的，shared_ptr提供的default调用的是delete，delete[]，所以shared_ptr不能释放数组
+    所以，如果你使用new[]建立一个array of object，你必须定义你自己的deleter。这很简单，你可以传递一个函数、函数对象或lambda，让它们针对传入的寻常指针调用delete[]。例如
+![Alt text](image-14.png)
+
+    也可以使用为 unique_ptr而提供的辅助函数（见5.2.5节第106页）作为deleter，其内调用delete[]：
+![Alt text](image-15.png)
+
+
+
+#### weak_ptr
+
+#### bad_weak_ptr
+
+#### enable_shared_from_this
+
+
+### unique_ptr
+
+
+## 辅助函数
+    
 
 
 
