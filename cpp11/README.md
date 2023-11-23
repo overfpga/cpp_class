@@ -135,13 +135,18 @@ std::ignore忽视某一个元素
 
 
 ## 辅助函数
-    
+
+### 最大值，最小值
+![Alt text](image-16.png)
 
 
+### minmax()
+    minmax返回一个pair，first是最小值，second是最大值
+![Alt text](image-17.png)
 
-
-
-
+### swap
+    swap用来交换两对象的值
+![Alt text](image-18.png)
 
 
 
