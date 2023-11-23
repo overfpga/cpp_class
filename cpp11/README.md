@@ -50,3 +50,11 @@
 
 #### bad_function_call
 
+
+## pair
+
+![Alt text](image-1.png)
+
+    make_pair
+        如果make_pair里面的参数想要是是引用，那么需要使用ref和cref转成引用
+        ![Alt text](image-2.png)
