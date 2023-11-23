@@ -91,3 +91,32 @@ std::ignore忽视某一个元素
     tuple_size＜tupletype＞：：value可获得元素个数。
     tuple_element＜idx，tupletype＞：：type可取得第idx个元素的类型（也就是get（）返回值的类型）。
     tuple_cat（）可将多个tuple串接成一个tuple。
+    std::get<0>(tuple): 获取tuple内的元素
+![Alt text](image-11.png)
+
+![Alt text](image-12.png)
+    这里的tt成为一个tuple，拥有众多tuple的所有元素，即便最后的元素n是个引用。
+
+
+
+
+
+
+
+
+## smart_poiter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
